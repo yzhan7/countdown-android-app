@@ -4,6 +4,9 @@ on:
   push:
   workflow_dispatch:
 
+permissions:
+  contents: write   # 允许把 APK 发布到 Releases
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -25,7 +28,25 @@ jobs:
       - name: Build debug APK
         run: bash ./gradlew assembleDebug --no-daemon --stacktrace
 
+      - name: Rename APK
+        run: |
+          ls -l app/build/outputs/apk/debug/
+          cp app/build/outputs/apk/debug/app-debug.apk SimpleTimer.apk
+
       - uses: actions/upload-artifact@v4
         with:
           name: SimpleTimer-apk
-          path: app/build/outputs/apk/debug/*.apk
+          path: SimpleTimer.apk
+          if-no-files-found: error
+
+      # 发布到 Releases（始终只保留一个名为 latest 的最新版本）
+      - name: Publish to Releases
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          gh release delete latest --yes --cleanup-tag || true
+          gh release create latest SimpleTimer.apk \
+            --target "${{ github.sha }}" \
+            --title "最新版本（第 ${{ github.run_number }} 次编译）" \
+            --notes "下载下方的 SimpleTimer.apk 安装到手机即可。"
