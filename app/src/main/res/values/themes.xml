@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@color/bg_bottom</item>
+        <item name="android:colorAccent">@color/accent</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+    </style>
+
+    <style name="TopButton">
+        <item name="android:layout_height">52dp</item>
+        <item name="android:background">@drawable/bg_button</item>
+        <item name="android:textColor">@color/text_main</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:paddingStart">26dp</item>
+        <item name="android:paddingEnd">26dp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:stateListAnimator">@null</item>
+        <item name="android:layout_marginStart">12dp</item>
+    </style>
+
+    <style name="SettingHeader">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">18dp</item>
+        <item name="android:layout_marginBottom">4dp</item>
+        <item name="android:textColor">?android:attr/colorAccent</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="SettingSwitch">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">44dp</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+</resources>

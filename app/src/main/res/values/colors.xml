@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg_top">#2B3241</color>
+    <color name="bg_mid">#323A4A</color>
+    <color name="bg_bottom">#1B2029</color>
+    <color name="btn_fill">#2C3340</color>
+    <color name="btn_stroke">#414A5B</color>
+    <color name="text_main">#FFFFFF</color>
+    <color name="text_sub">#E6FFFFFF</color>
+    <color name="accent">#7FB2FF</color>
+    <color name="icon_bg">#2B3241</color>
+</resources>

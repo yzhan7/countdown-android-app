@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_main"
+    android:orientation="vertical"
+    android:paddingStart="20dp"
+    android:paddingTop="14dp"
+    android:paddingEnd="20dp"
+    android:paddingBottom="14dp">
+
+    <!-- 顶部栏：左侧（提示语 / 小时钟），右侧两个按钮 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tvMotto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/text_sub"
+                android:textSize="22sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvSmallClock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFeatureSettings="tnum"
+                android:textColor="@color/text_sub"
+                android:textSize="30sp"
+                android:visibility="gone" />
+        </FrameLayout>
+
+        <!-- 主界面：设置 + 开始计时 -->
+        <ImageButton
+            android:id="@+id/btnSettings"
+            style="@style/TopButton"
+            android:layout_width="52dp"
+            android:contentDescription="设置"
+            android:paddingStart="0dp"
+            android:paddingEnd="0dp"
+            android:scaleType="center"
+            android:src="@drawable/ic_settings" />
+
+        <Button
+            android:id="@+id/btnStart"
+            style="@style/TopButton"
+            android:layout_width="wrap_content"
+            android:text="开始计时" />
+
+        <!-- 计时界面：重新计时 + 返回 -->
+        <Button
+            android:id="@+id/btnRestart"
+            style="@style/TopButton"
+            android:layout_width="wrap_content"
+            android:text="重新计时"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/btnBack"
+            style="@style/TopButton"
+            android:layout_width="wrap_content"
+            android:text="返回"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <!-- 中间大字：主界面显示时钟，计时界面显示计时 -->
+    <TextView
+        android:id="@+id/tvBig"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:autoSizeMaxTextSize="420sp"
+        android:autoSizeMinTextSize="24sp"
+        android:autoSizeStepGranularity="2sp"
+        android:autoSizeTextType="uniform"
+        android:fontFamily="sans-serif"
+        android:fontFeatureSettings="tnum"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:maxLines="1"
+        android:textColor="@color/text_main" />
+
+    <!-- 底部：日期 / 状态行，响铃时换成“停止响铃”按钮 -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:id="@+id/tvSub"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:textColor="@color/text_sub"
+            android:textSize="28sp" />
+
+        <Button
+            android:id="@+id/btnStopRing"
+            android:layout_width="wrap_content"
+            android:layout_height="52dp"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_button_alert"
+            android:paddingStart="36dp"
+            android:paddingEnd="36dp"
+            android:stateListAnimator="@null"
+            android:text="时间到 · 停止响铃"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:visibility="gone" />
+
+        <!-- 多段计时：切换到下一段 -->
+        <Button
+            android:id="@+id/btnNext"
+            style="@style/TopButton"
+            android:layout_width="wrap_content"
+            android:layout_gravity="end|center_vertical"
+            android:text="下一段 ›"
+            android:textSize="16sp"
+            android:visibility="gone" />
+    </FrameLayout>
+</LinearLayout>

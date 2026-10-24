@@ -1,2 +1,50 @@
-# countdown-android-app
-A lightweight Android countdown timer app that helps you count down time easily.
+# 简洁计时器（SimpleTimer）
+
+无广告、无联网、无第三方库的安卓桌面时钟 / 计时器。Android 8.0 及以上可用。
+
+## 功能
+
+**主界面**：大字显示系统时间，下方显示「2026年10月24日 星期六 下午」；右上角只有「⚙ 设置」和「开始计时」两个按钮。
+
+**计时界面**：系统时间缩到左上角，中间大字显示计时；右上角变为「重新计时」「返回」。
+
+三种计时方式：
+
+1. **正常计时**：从 00:00 往上计。
+2. **倒计时**：3 / 5 / 10 分钟或自定义；可设“剩 30 秒 / 1 / 2 / 5 分钟”时响一次短促提示音。
+3. **多段计时**（最多 3 段，默认是答辩模板）：
+   - 第 1 段「答辩」10 分钟，第 9 分钟（剩 1 分钟）“嘀嘀嘀”提示；
+   - 10 分钟时响铃（段间铃声，默认 5 秒），自动进入第 2 段「提问」5 分钟，中间无提示；
+   - 15 分钟时响结束铃，显示“全部结束”。
+   - 每段的名称、时长、提示音都可改；可关闭“自动进入下一段”（改为手动点“开始下一段”）；计时中可点右下角「下一段 ›」提前切换（如答辩人提前讲完）。
+
+其他：
+
+- 轻触计时数字可暂停 / 继续；响铃时轻触数字可停止响铃
+- 最后 1 分钟数字变橙色；时间到后变红，可继续显示超时（-00:12）
+- 屏幕常亮：本应用在前台时手机不会自动息屏，无需修改手机设置
+- 手机返回键：计时界面 → 主界面
+
+**设置**（自动保存，下次打开恢复）：计时方式、倒计时时间、多段设置、提示音、铃声（系统铃声或手机里任意音频）、音量（可试听铃声和提示音）、结束铃声时长、振动、24 小时制、屏幕常亮、全屏、横竖屏、主界面提示语。
+
+## 编译方法一：GitHub 云端编译（推荐，电脑上什么都不用装）
+
+1. 注册并登录 https://github.com ，点右上角 **+ → New repository**，名字随意（如 `SimpleTimer`），选 Public 或 Private 均可，点 **Create repository**。
+2. 在新仓库页面点 **uploading an existing file**，把本项目文件夹**里面的所有内容**（`app` 文件夹、`gradle` 文件夹、`build.gradle`、`settings.gradle`、`gradle.properties`、`gradlew` 等）一起拖进去，点 **Commit changes**。
+3. 网页上传有时会漏掉以 `.` 开头的隐藏文件夹。上传后若仓库里看不到 `.github` 文件夹，就点 **Add file → Create new file**，文件名填 `.github/workflows/build.yml`，把本项目中同名文件的内容粘进去，点 **Commit changes**。
+4. 点仓库上方的 **Actions** 标签，会看到 “Build APK” 正在运行（约 3–5 分钟）。变成绿色 ✓ 后点进去，页面底部 **Artifacts** 里有 `SimpleTimer-apk`，下载解压得到 `app-debug.apk`。
+5. 把 APK 发到手机安装（需允许“安装未知来源应用”）。
+
+以后改了代码，只要在 GitHub 网页上编辑/重新上传文件，就会自动重新编译。项目里自带固定签名文件 `app/debug.keystore`，新版本可直接覆盖安装。
+
+## 编译方法二：Android Studio 本地编译
+
+1. 安装 Android Studio（https://developer.android.google.cn/studio ），首次启动按向导装好 SDK。
+2. **File → Open** 选择本项目文件夹，等待 Gradle 同步完成。
+   - 国内网络慢：在 `settings.gradle` 里取消阿里云镜像那几行的注释；在 `gradle/wrapper/gradle-wrapper.properties` 中换成腾讯镜像那一行。
+3. 菜单 **Build → Build App Bundle(s) / APK(s) → Build APK(s)**，生成的文件在 `app/build/outputs/apk/debug/app-debug.apk`。也可以手机开 USB 调试后直接点 ▶ 运行。
+
+## 已知限制
+
+- 倒计时期间如果手机锁屏或切到后台，部分国产系统会冻结后台应用，可能导致不响铃。建议开着「屏幕常亮」使用；如需后台可靠响铃，可在系统设置里给本应用开「允许后台运行 / 关闭电池优化」。
+- 实际铃声音量 = 系统「闹钟音量」× 设置中的比例。如果系统闹钟音量为 0，将听不到声音。
